@@ -86,7 +86,7 @@ python manage.py runserver
 
 # AUTOSEARCH/AUTOCOMPLETE 
 
-https://imgur.com/a/Q4AAnfV
+![IMGUR](https://imgur.com/4fYVDOG)
 
 # URLS
 ### 1. http://127.0.0.1:8000/signup   ===> for signup
