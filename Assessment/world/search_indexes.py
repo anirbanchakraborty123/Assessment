@@ -7,7 +7,7 @@ class CityIndex(indexes.SearchIndex, indexes.Indexable):
 
     city_name = indexes.CharField(model_attr="name")
 
-    i_city_name = indexes.NgramField(model_attr="name")
+    name = indexes.NgramField(model_attr="name")
  
     def get_model(self):
         return City
@@ -20,7 +20,7 @@ class CountryIndex(indexes.SearchIndex, indexes.Indexable):
 
     country_name = indexes.CharField(model_attr="name")
 
-    i_country_name = indexes.NgramField(model_attr="name")
+    name = indexes.NgramField(model_attr="name")
  
     def get_model(self):
         return Country
@@ -33,7 +33,7 @@ class CountrylanguageIndex(indexes.SearchIndex, indexes.Indexable):
 
     language_name = indexes.CharField(model_attr="language")
 
-    i_language_name = indexes.NgramField(model_attr="language")
+    name = indexes.NgramField(model_attr="language")
  
     def get_model(self):
         return Countrylanguage

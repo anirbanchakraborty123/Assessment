@@ -77,3 +77,7 @@ python manage.py rebuild_index
 
 # Run the server
 python manage.py runserver 
+
+
+# AUTOSEARCH/AUTOCOMPLETE 
+![](https://imgur.com/a/Q4AAnfV)

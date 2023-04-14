@@ -3,6 +3,7 @@
 
 {% block scripts %}
     {{ block.super }}
+
     <script src="{% static 'js/home.js' %}"></script>
 {% endblock %}
 
@@ -15,19 +16,34 @@
 			<div class="input-group-prepend">
 				<span class="input-group-text"> <i class="fa fa-search"></i> </span>
 			 </div>
-			<input name="" id="tags" class="form-control search" placeholder="Enter 3 or more characters" type="text">
-		    <script>
-				$(function () {
-					var availableTags = [
-						{% for car in brand %}
-					"{{car.name}}",
-					{% endfor %}
-			];
-				$("#tags").autocomplete({
-					source: availableTags
-				});
-		  } );
-			</script>
+			<input name="q" id="tags" class="form-control search" placeholder="Search for city or countries or language" type="text">
+		    <script type="text/javascript">
+				
+					$(function() {
+					  $("#tags").autocomplete({
+						source: "{% url 'company-autocomplete' %}",
+						minLength: 2,
+					  });
+					});
+
+					{% comment %} $("#tags").autocomplete({
+						source: function(request, response) {
+							$.ajax({
+								url:"{% url 'company-autocomplete' %}",
+								dataType: "json",
+								data: {
+									term : request.term,
+									
+								},
+								success: function(data) {
+									response(data);
+								}
+							});
+						}
+					}); {% endcomment %}
+					
+            </script>			
+			
 		</div>
 		
 		<div class="form-group col-sm-2">

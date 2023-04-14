@@ -21,7 +21,14 @@
             <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.js"></script>
 			<script src="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/alertify.min.js"></script>
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/nunjucks/3.0.1/nunjucks.min.js"></script>
-        {% endblock %}
+            <!-- jQuery !-->
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"> </script>
+            <!-- jQuery UI !-->
+            <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+            <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+            {% comment %} <link href="Stylesheets/jquery-ui.css" rel="stylesheet" /> {% endcomment %}
+            {% comment %} <script src="Scripts/jquery-ui.js"></script> {% endcomment %}
+            {% endblock %}
     </head>
     <body>
         {% block body %}

@@ -19,16 +19,29 @@ from .models import User, City, Country, Countrylanguage
 def home(request):
     return render(request, "home.html")
 
+# For AutoScomplete search input
+@login_required
 def autocomplete(request):
-    sqs = SearchQuerySet().autocomplete(i_city_name=request.GET.get('q', ''))[:5]
-    suggestions = [result.title for result in sqs]
-    # Make sure you return a JSON object, not a bare list.
-    # Otherwise, you could be vulnerable to an XSS attack.
-    the_data = json.dumps({
-        'results': suggestions
-    })
-    return HttpResponse(the_data, content_type='application/json')
+        if request.is_ajax():
+            term=request.GET.get('term', '')
+            sqs = SearchQuerySet().autocomplete(name=term)
+            results = []
+            if sqs:
+                for s in sqs:
+                    signer_json = {}
+                    signer_json['label'] = s.name
+                    signer_json['value'] = s.name
+                    results.append(signer_json)
+                data = json.dumps(results)
+            else:
+                signer_json = {}
+                signer_json['label'] ="No results found"
+                signer_json['value'] ="No results found"
+                results.append(signer_json)
+                data = json.dumps(results)
+            return HttpResponse(data, content_type='application/json')
 
+# For handling search results
 @login_required
 def search(request):
     query = request.GET.get("query", "").strip()
@@ -37,10 +50,10 @@ def search(request):
     if not query and len(query) < 3:
         return JsonResponse(result)
 
-    city_pks = list(SearchQuerySet().autocomplete(i_city_name=query).values_list("pk", flat=True))
-    country_pks = list(SearchQuerySet().autocomplete(i_country_name=query).values_list("pk", flat=True))
-    language_pks = list(SearchQuerySet().autocomplete(i_language_name=query).values_list("pk", flat=True))
-
+    city_pks = list(SearchQuerySet().models(City).autocomplete(name=query).values_list("pk", flat=True))
+    country_pks = list(SearchQuerySet().models(Country).autocomplete(name=query).values_list("pk", flat=True))
+    language_pks = list(SearchQuerySet().models(Countrylanguage).autocomplete(name=query).values_list("pk", flat=True))
+    
     result["cities"] = [ City.objects.filter(pk=city_pk).values().first() for city_pk in city_pks ]
     result["countries"] = [ Country.objects.filter(pk=country_pk).values().first() for country_pk in country_pks ]
     result["languages"] = [ Countrylanguage.objects.filter(pk=language_pk).values().first() for language_pk in language_pks ]
