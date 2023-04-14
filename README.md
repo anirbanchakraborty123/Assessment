@@ -64,6 +64,13 @@ EMAIL_HOST_PASSWORD = '<your-email-password>'
 EMAIL_PORT = 587
 
 # save the file
+
+
+```
+#### 7. Create admin/superuser for accessing admin panel
+```bash
+# Make migrations
+python manage.py createsuperuser
 ```
 #### 7. Run the server
 ```bash
@@ -76,3 +83,16 @@ python manage.py rebuild_index
 
 # Run the server
 python manage.py runserver 
+
+# AUTOSEARCH/AUTOCOMPLETE 
+
+https://imgur.com/a/Q4AAnfV
+
+# URLS
+### 1. http://127.0.0.1:8000/signup   ===> for signup
+### 2. http://127.0.0.1:8000/login    ===> for login
+### 3. http://127.0.0.1:8000/         ===> Dashboard page
+### 4. http://127.0.0.1:8000/country  ===> for getting country details
+### 2. http://127.0.0.1:8000/logout   ===> for logout
+### 2. http://127.0.0.1:8000/admin    ===> for accessing admin page
+
