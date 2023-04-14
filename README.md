@@ -84,9 +84,11 @@ python manage.py rebuild_index
 # Run the server
 python manage.py runserver 
 
-# AUTOSEARCH/AUTOCOMPLETE 
+```
 
-![IMGUR](https://imgur.com/4fYVDOG)
+#### AUTOSEARCH/AUTOCOMPLETE 
+
+![](https://i.ibb.co/7XdKLqt/ZPk-RXNh-Imgur.png)
 
 # URLS
 ### 1. http://127.0.0.1:8000/signup   ===> for signup
